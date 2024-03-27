@@ -86,7 +86,20 @@ const Finish = () => {
       '&:hover': {
         backgroundColor: '#B375FF',
       },
-    }
+    },
+    button: {
+      backgroundColor: '#1488F0',
+      color: '#ffffff',
+      width: '500px',
+      borderRadius: '50px',
+      textTransform: 'none',
+      height: '60px',
+      marginTop: '60px',
+      transition: 'background-color 0.3s',
+    },
+    buttonHover: {
+      backgroundColor: '#0161b7',
+    },
   };
 
   return (
@@ -169,15 +182,12 @@ const Finish = () => {
           </Typography>
         </Container>
 
-        <Button sx={{ backgroundColor: '#1488F0', color: '#ffffff', width: '500px', borderRadius: '50px', textTransform: 'none', height: '60px', marginTop: '60px' }}>Get my plan</Button>
+        <Button sx={{ ...styles.button, '&:hover': styles.buttonHover }}>Get my plan</Button>
         <Typography variant="p" sx={{ color: '#333333', fontWeight: '700', fontSize: '30px', maxWidth: '400px', textAlign: 'center', marginTop: '100px' }}>
           Use our mobile app to improve your results
         </Typography>
-
-
-
         <Image src="/images/phones.svg" alt="Company Logo" width={700} height={600} />
-        <Button sx={{ backgroundColor: '#1488F0', color: '#ffffff', width: '500px', borderRadius: '50px', textTransform: 'none', height: '60px' }}>Get my plan</Button>
+        <Button sx={{ ...styles.button, '&:hover': styles.buttonHover }}>Get my plan</Button>
       </Container>
     </Container>
   );
