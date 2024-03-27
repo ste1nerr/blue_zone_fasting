@@ -239,8 +239,8 @@ function TestPage() {
 
     useEffect(() => {
         if (answers.length > 0 && answers[0]?.selectedOption) {
-            const answerToQuestion0 = answers[0].selectedOption.toLowerCase(); 
-            if (answerToQuestion0 === 'male' || answerToQuestion0 === 'female') { 
+            const answerToQuestion0 = answers[0].selectedOption.toLowerCase();
+            if (answerToQuestion0 === 'male' || answerToQuestion0 === 'female') {
                 setGender(answerToQuestion0);
             }
         }
@@ -326,7 +326,7 @@ function TestPage() {
                                     </div>
                                 );
                             })}
-                            {}
+                            { }
                             {currentQuestionIndex === 25 && <InputTall />}
                             {currentQuestionIndex === 26 && <InputCurrentWeight />}
                             {currentQuestionIndex === 27 && <InputTargetWeight />}
@@ -354,19 +354,24 @@ function TestPage() {
                     </Typography>
                 </Container>
 
-                <AppBar position="static" sx={styles.appBarBottom}>
-                    <Container sx={{ textAlign: 'center' }}>
-                        <Button
-                            onClick={handleNextQuestion}
-                            variant="contained"
-                            color="primary"
-                            sx={styles.appBarBottomButton}
-                        // disabled={isButtonDisabled}
-                        >
-                            Continue
-                        </Button>
-                    </Container>
-                </AppBar>
+                {currentQuestionIndex !== 34 && (
+                    <AppBar position="static" sx={styles.appBarBottom}>
+                        <Container sx={{ textAlign: 'center' }}>
+
+
+                            <Button
+                                onClick={handleNextQuestion}
+                                variant="contained"
+                                color="primary"
+                                sx={styles.appBarBottomButton}
+                            // disabled={isButtonDisabled}
+                            >
+                                Continue
+                            </Button>
+
+                        </Container>
+                    </AppBar>
+                )}
             </div>
         </ThemeProvider>
     );
