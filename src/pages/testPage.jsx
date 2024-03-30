@@ -20,7 +20,7 @@ import WeightLossChart from '@/components/WeightLossChart';
 import FastingPlan from '@/components/FastingPlan';
 import EnterMail from '@/components/EnterMail';
 import Finish from '@/components/Finish';
-
+import { Grid, Box } from '@mui/material';
 
 const styles = {
     container: {
@@ -45,46 +45,23 @@ const styles = {
         textAlign: 'center',
     },
     contentContainer: {
+        padding: '20px',
+        width: '100%',
+        maxWidth: '600px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         marginTop: '10vh',
         flex: 1,
     },
-    optionsContainer: {
-        flex: '1',
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(550px, 1fr))',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: '25px'
-    },
-    option: {
-        margin: '0 auto',
-        backgroundColor: '#FFFFFF',
-        height: '80px',
-        display: 'flex',
-        alignItems: 'center',
-        borderRadius: '14px',
-        paddingLeft: '20px',
-        paddingRight: '20px',
-        justifyContent: 'space-between',
-        maxWidth: '550px',
-        marginTop: '-10px',
-    },
-    optionsContainerWrap: {
-        flexWrap: 'wrap',
-        maxHeight: '300px',
-    },
-
     emojiIcon: {
-        marginRight: '0.8vw',
         width: '32px',
+        marginRight: '30px',
         height: '32px',
     },
     imageIcon: {
-        marginRight: '0.8vw',
-        width: '16.8%',
+        width: '85px',
+        marginRight: '30px',
         height: 'auto',
     },
     appBarBottom: {
@@ -96,13 +73,13 @@ const styles = {
         borderTop: '1px solid #ccc',
     },
     checkBoxAndRadio: {
-        marginRight: '20px',
         marginLeft: 'auto',
     },
     appBarBottomButton: {
         backgroundColor: '#1488F0',
         borderRadius: '50px',
-        width: '350px',
+        width: '100%',
+        maxWidth: '350px',
         height: '50px',
         padding: '10px 16px',
         textTransform: 'none',
@@ -112,7 +89,8 @@ const styles = {
         fontSize: '40px',
         borderRadius: '5px',
         display: 'flex',
-        width: '60%',
+        width: '80vw',
+        minWidth: '300px',
         height: '5px',
         marginBottom: '2vh',
         marginTop: '5vh'
@@ -132,28 +110,57 @@ const styles = {
         },
         fontSize: {
             xl: 20,
-            lg: 20,
-            sm: 20,
+            lg: 18,
+            sm: 16,
             xs: 16,
         },
-        fontWeight: '600',
+        fontWeight: '500',
     },
-    testContent: {
-        fontFamily: 'Roboto, sans-serif',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: '0 auto'
-    },
+
     questionContainer: {
-        fontFamily: 'Roboto, sans-serif',
         textAlign: 'center',
         marginBottom: '4vh',
         maxWidth: '550px',
-        fontSize: '40px',
+        fontSize: {
+            xl: '40px',
+            lg: '40px',
+            sm: '34px',
+            xs: '28px',
+        },
         fontWeight: '700'
-    }
+    },
+
+    gridItem: {
+        cursor: 'pointer',
+        backgroundColor: '#FFFFFF',
+        height: '80px',
+        borderRadius: '14px',
+        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        display: 'flex',
+        width: '100%',
+        transition: 'box-shadow 0.3s, border-color 0.3s',
+        border: '2px solid transparent',
+        '&:hover': {
+            borderColor: '#1488F0',
+        }
+    },
+    skipContainer: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '300px',
+        height: '50px'
+    },
+    skipText: {
+        fontSize: {
+            xl: '16px',
+            lg: '16px',
+            sm: '12px',
+            xs: '12px',
+        },
+        textAlign: 'center',
+        cursor: 'pointer',
+    },
 };
 
 function TestPage() {
@@ -162,6 +169,7 @@ function TestPage() {
     const [gender, setGender] = useState('');
     const [answers, setAnswers] = useState([]);
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+    const [isActive, setIsActive] = useState(false);
 
     const totalQuestions = testData.questions.length;
 
@@ -174,7 +182,6 @@ function TestPage() {
             setSelectedOptions([]);
         }
     };
-
     const getSkipText = (questionIndex) => {
         switch (questionIndex) {
             case 1:
@@ -216,12 +223,6 @@ function TestPage() {
         }
     };
 
-    if (currentQuestion.options.length <= 4) {
-        styles.optionsContainer.gridTemplateColumns = 'repeat(1, minmax(550px, 1fr))';
-    } else {
-        styles.optionsContainer.gridTemplateColumns = 'repeat(2, minmax(450px, 1fr))';
-    }
-
     const handleAnswerClick = (optionIndex) => {
         if (!currentQuestion.checkboxes) {
             setSelectedOptions([optionIndex]);
@@ -248,9 +249,25 @@ function TestPage() {
 
     const progress = ((currentQuestionIndex + 1) / totalQuestions) * 100;
 
-    const optionWidth = currentQuestion.options.length > 4 ? '35vw' : '80vw';
+    let gridSpacing = 2;
+    let gridJustify = 'center';
+    let gridColumns = { xs: 12, sm: 6, md: 4, lg: 3 };
 
+    if (currentQuestion.options.length === 3 || currentQuestion.options.length === 2 || currentQuestion.options.length === 4) {
+        gridSpacing = 2;
+        gridJustify = 'center';
+        gridColumns = { xs: 12 };
+    }
+    let updatedContentContainerStyles = { ...styles.contentContainer };
 
+    if (currentQuestion.options.length > 4) {
+        gridSpacing = 2;
+        gridJustify = 'center';
+        gridColumns = { xs: 12, sm: 6 };
+        if (currentQuestion.options.length > 4) {
+            updatedContentContainerStyles.maxWidth = '900px';
+        }
+    }
 
     return (
         <ThemeProvider theme={theme}>
@@ -264,7 +281,7 @@ function TestPage() {
                     </Toolbar>
                 </AppBar>
                 {currentQuestionIndex <= 31 && (
-                    <div style={styles.progressContainer}>
+                    <Container style={styles.progressContainer}>
                         {[...Array(totalQuestions)].map((_, index) => (
                             <div
                                 key={index}
@@ -277,19 +294,19 @@ function TestPage() {
                                 }}
                             />
                         ))}
-                    </div>
+                    </Container>
                 )}
-                <div style={styles.contentContainer}>
-                    <Container sx={styles.testContent}>
-                        {currentQuestionIndex <= 31 && (
-                            <Typography variant="h4" sx={styles.questionContainer}>
-                                {currentQuestion.question_text}
-                            </Typography>
-                        )}
-                        <Container sx={{ ...styles.optionsContainer }}>
-                            {currentQuestion.options.map((option, index) => {
-                                return (
-                                    <div key={index} style={{ ...styles.option, width: optionWidth }}>
+                <Container style={updatedContentContainerStyles}>
+                    {currentQuestionIndex <= 31 && (
+                        <Typography variant="h4" sx={styles.questionContainer}>
+                            {currentQuestion.question_text}
+                        </Typography>
+                    )}
+                    <Grid container spacing={gridSpacing} justifyContent={gridJustify}>
+                        {currentQuestion.options.map((option, index) => (
+                            <Grid item {...gridColumns} key={index} style={{ display: 'flex', justifyContent: 'center' }} onClick={() => handleAnswerClick(index)}>
+                                <Box sx={styles.gridItem}>
+                                    <Container style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
                                         {option.icon_type === 'none' ? (
                                             <span></span>
                                         ) : (
@@ -323,27 +340,26 @@ function TestPage() {
                                                 sx={styles.checkBoxAndRadio}
                                             />
                                         )}
-                                    </div>
-                                );
-                            })}
-                            { }
-                            {currentQuestionIndex === 25 && <InputTall />}
-                            {currentQuestionIndex === 26 && <InputCurrentWeight />}
-                            {currentQuestionIndex === 27 && <InputTargetWeight />}
-                            {currentQuestionIndex === 28 && <WelnessProfile />}
-                            {currentQuestionIndex === 30 && <InputEvent />}
-                            {currentQuestionIndex === 31 && <Plan />}
-                            {currentQuestionIndex === 32 && <FastingPlan />}
-                            {currentQuestionIndex === 33 && <EnterMail />}
-                            {currentQuestionIndex === 34 && <Finish />}
-                        </Container>
-                    </Container>
-                </div>
-                <Container sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '300px', height: '50px' }}>
+                                    </Container>
+                                </Box>
+                            </Grid>
+                        ))}
+                    </Grid>
+
+                    {currentQuestionIndex === 25 && <InputTall />}
+                    {currentQuestionIndex === 26 && <InputCurrentWeight />}
+                    {currentQuestionIndex === 27 && <InputTargetWeight />}
+                    {currentQuestionIndex === 28 && <WelnessProfile />}
+                    {currentQuestionIndex === 30 && <InputEvent />}
+                    {currentQuestionIndex === 31 && <Plan />}
+                    {currentQuestionIndex === 32 && <FastingPlan />}
+                    {currentQuestionIndex === 33 && <EnterMail />}
+                    {currentQuestionIndex === 34 && <Finish />}
+                </Container>
+                <Container sx={styles.skipContainer}>
                     <Typography
                         sx={{
-                            fontSize: '16px',
-                            textAlign: 'center',
+                            ...styles.skipText,
                             cursor: getSkipText(currentQuestionIndex) === "Skip the question" ? "pointer" : "default"
                         }}
                         variant="body2"
@@ -357,18 +373,8 @@ function TestPage() {
                 {currentQuestionIndex !== 34 && (
                     <AppBar position="static" sx={styles.appBarBottom}>
                         <Container sx={{ textAlign: 'center' }}>
-
-
-                            <Button
-                                onClick={handleNextQuestion}
-                                variant="contained"
-                                color="primary"
-                                sx={styles.appBarBottomButton}
-                            // disabled={isButtonDisabled}
-                            >
-                                Continue
-                            </Button>
-
+                            <Button onClick={handleNextQuestion} variant="contained" color="primary" sx={styles.appBarBottomButton}> Continue</Button>
+                            {/* disabled={isButtonDisabled} */}
                         </Container>
                     </AppBar>
                 )}

@@ -5,7 +5,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField'; 
+import TextField from '@mui/material/TextField';
 import Link from 'next/link';
 import Image from 'next/image';
 import theme from '@/styles/theme/theme';
@@ -25,10 +25,27 @@ const styles = {
     fontWeight: '700',
   },
   inputBlock: {
+    marginTop: {
+      xl: '70px',
+      lg: '50px',
+      sm: '30px',
+      xs: '10px',
+    },
+    height: {
+      xl: '240px',
+      lg: '220px',
+      sm: '200px',
+      xs: '180px',
+    },
     borderRadius: '14px',
     backgroundColor: '#FFFFFF',
-    width: '350px',
-    height: '250px',
+    width: {
+      xl: '400px',
+      lg: '400px',
+      sm: '340px',
+      xs: '280px',
+    },
+    padding: '20px',
     display: 'flex',
     justifyContent: 'center',
     flexDirection: 'column',
@@ -37,14 +54,18 @@ const styles = {
     boxShadow: '0px 0px 10px 2px rgba(0, 0, 0, 0.1)',
   },
   textField: {
-    width: '130px',
-    marginLeft: '20px',
-    marginRight: '10px',
+    width: '60%',
+    maxWidth: '130px',
     border: 'none',
     borderBottom: '1px solid #9e9e9e',
     borderRadius: '0',
     '& .MuiInputBase-input': {
-      fontSize: '48px',
+      fontSize: {
+        xl: '40px',
+        lg: '40px',
+        sm: '34px',
+        xs: '28px',
+      },
       fontWeight: '700',
       textAlign: 'center',
     },
@@ -57,23 +78,16 @@ const styles = {
       }
     },
   },
-  button: {
-    margin: '10px',
-    '&:hover': {
-      backgroundColor: '#2196f3'
-    }
-  },
   unitText: {
-    marginBottom: '20px',
     fontSize: '30px',
     fontWeight: '700',
     position: 'absolute',
-    top: 1,
-    right: 8,
+    top: '0',
+    right: '-15px'
   },
   space: {
     position: 'relative',
-    width: '44px',
+    width: '10px',
     height: '60px'
   },
   switchContainer: {
@@ -87,10 +101,10 @@ const styles = {
     overflow: 'hidden',
   },
   switchOption: {
-    flex: 1,
     cursor: 'pointer',
-    padding: '10px 40px 10px 40px',
-    fontSize: '20px',
+    width: '100px',
+    padding: '10px',
+    fontSize: '16px',
     fontWeight: 'bold',
     backgroundColor: '#fff',
     color: '#1488F0',
@@ -101,30 +115,52 @@ const styles = {
     color: '#fff',
   },
   bmi: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start', 
-    alignItems: 'center',
-    marginTop: '30px',
-    borderRadius: '14px',
-    backgroundColor: '#FFFFFF',
-    width: '350px',
-    height: '150px',
-    boxShadow: '0px 0px 10px 2px rgba(0, 0, 0, 0.1)',
+    width: {
+      xl: "400px",
+      lg: "400px",
+      sm: "340px",
+      xs: "280px",
+    },
+    maxWidth: "400px",
+    padding: "20px",
+    margin: "0 auto",
+    marginTop: "30px",
+    borderRadius: "14px",
+    backgroundColor: "#fff",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
   },
   bmiContent: {
-    marginTop: '20px',
-    marginBottom:'5px',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '8%'
-  }
+    marginLeft: {
+      xl: "-24px",
+      lg: "-24px",
+      sm: "-24px",
+      xs: "-14px",
+    },
+    gap:'10px',
+    display: "flex",
+    alignItems: "center",
+    justifyContent:'flexStart',
+  },
+  bmiTitle: {
+    fontWeight: 600,
+    fontSize: "16px",
+    marginLeft: {
+      xl: "10px",
+      lg: "10px",
+      sm: "10px",
+      xs: "0",
+    },
+  },
+  bmiDescription: {
+    fontSize: "14px",
+    textAlign: "left",
+  },
 };
 
 const CustomSwitch = ({ isInCm, toggleUnit }) => {
   return (
     <div style={styles.switchContainer}>
-      <div style={{ ...styles.switchOption, ...(isInCm ? styles.activeOption : {}), paddingLeft: '50px' }} onClick={() => !isInCm && toggleUnit()}>
+      <div style={{ ...styles.switchOption, ...(isInCm ? styles.activeOption : {}) }} onClick={() => !isInCm && toggleUnit()}>
         ft
       </div>
       <div style={{ ...styles.switchOption, ...(isInCm ? {} : styles.activeOption) }} onClick={() => isInCm && toggleUnit()} >
@@ -154,7 +190,7 @@ const InputTall = () => {
   const toggleUnit = () => {
     setIsInCm((prevIsInCm) => {
       const newIsInCm = !prevIsInCm;
-      localStorage.setItem('unit', newIsInCm ? 'ft' :'cm');
+      localStorage.setItem('unit', newIsInCm ? 'ft' : 'cm');
       return newIsInCm;
     });
   };
@@ -162,9 +198,9 @@ const InputTall = () => {
   return (
     <Container sx={styles.mainContainer}>
       <Container sx={styles.inputBlock}>
-        <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <Container sx={{ gap: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <Typography variant="h6" component="div">
-            <Image src="/images/greenLine.svg" alt="Company Logo" width={50} height={50} />
+            <Image src="/images/greenLine.svg" alt="img" width={50} height={50} />
           </Typography>
           <TextField
             variant="standard"
@@ -174,7 +210,7 @@ const InputTall = () => {
             InputProps={{
               disableUnderline: true,
               placeholder: '',
-              inputProps: { maxLength: 5 }
+              inputProps: { maxLength: 5, pattern: "[0-9]*" }
             }}
           />
           <Typography variant="p" sx={styles.space}>
@@ -191,11 +227,11 @@ const InputTall = () => {
           <Typography component="p">
             <Image src="/images/yellowFire.svg" alt="Company Logo" width={34} height={40} />
           </Typography>
-          <Typography variant="p" component="div" sx={{ fontWeight: '600', fontSize: '18px' }}>
+          <Typography variant="p" component="div" sx={styles.bmiTitle}>
             Calculating your BMI
           </Typography>
         </Container>
-        <Typography sx={{ width: '110%', fontSize: '16px' }} variant="p" component="div" >
+        <Typography sx={styles.bmiDescription} variant="p" component="div" >
           Body mass index (BMI) is a metric of body fat percentage commonly
           used to estimate risk levels of potential health problems.
         </Typography>

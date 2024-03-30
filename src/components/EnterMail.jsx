@@ -10,14 +10,32 @@ const styles = {
     flexDirection: 'column'
   },
   inputBlock: {
+    marginTop: {
+      xl: '70px',
+      lg: '50px',
+      sm: '30px',
+      xs: '10px',
+    },
+    height: {
+      xl: '240px',
+      lg: '220px',
+      sm: '200px',
+      xs: '180px',
+    },
     borderRadius: '14px',
     backgroundColor: '#FFFFFF',
-    width: '455px',
-    height: '250px',
+    width: {
+      xl: '400px',
+      lg: '400px',
+      sm: '340px',
+      xs: '280px',
+    },
+    padding: '20px',
     display: 'flex',
     justifyContent: 'center',
     flexDirection: 'column',
     alignItems: 'center',
+    textAlign: 'center',
     boxShadow: '0px 0px 10px 2px rgba(0, 0, 0, 0.1)',
   },
   textField: {
@@ -40,20 +58,41 @@ const styles = {
     },
   },
   bmi: {
-    display: 'flex',
-    marginTop: '30px',
-    borderRadius: '14px',
-    backgroundColor: '#FFFFFF',
-    width: '455px',
-    height: '75px',
-    boxShadow: '0px 0px 10px 2px rgba(0, 0, 0, 0.1)',
-  }, 
+    width: {
+      xl: "400px",
+      lg: "400px",
+      sm: "340px",
+      xs: "280px",
+    },
+    maxWidth: "400px",
+    padding: "20px",
+    margin: "0 auto",
+    marginTop: "30px",
+    borderRadius: "14px",
+    backgroundColor: "#fff",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+  },
+  bmiContent: {
+    gap: '10px',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: 'flexStart',
+  },
+  bmiDescription: {
+    fontSize: "14px",
+    textAlign: "center",
+  },
   title: {
-    textAlign:'center',
-    maxWidth: '410px',
+    textAlign: 'center',
+    maxWidth: '550px',
+    fontSize: {
+      xl: '40px',
+      lg: '40px',
+      sm: '34px',
+      xs: '28px',
+    },
     fontWeight: '700',
     fontFamily: 'Roboto, sans-serif',
-    fontSize: '40px',
     marginBottom: '4vh',
   },
 };
@@ -98,8 +137,8 @@ const EnterMail = () => {
 
       <Container sx={styles.bmi}>
         <Container sx={styles.bmiContent}>
-          <Typography sx={{ width: '100%', fontSize: '16px', textAlign: 'center', marginTop: '20px' }} variant="p" component="div" >
-            Please check our <span style={{ color: '#1488F0', cursor:'pointer'}}>Privacy Policy</span> to understand how we use your data
+          <Typography sx={styles.bmiDescription} variant="p" component="div" >
+            Please check our <span style={{ color: '#1488F0', cursor: 'pointer' }}>Privacy Policy</span> to understand how we use your data
           </Typography>
         </Container>
 

@@ -4,7 +4,8 @@ import WeightLossChart from '@/components/WeightLossChart';
 
 const styles = {
   mainContainer: {
-    width: '600px',
+    width: '100%',
+    maxWidth:'600px',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -31,7 +32,7 @@ const styles = {
   overlay1: {
     paddingTop:"4px",
     position: 'absolute',
-    top: 5,
+    top: 10,
     left: 55,
     width: '60px',
     height: '30px',
@@ -43,8 +44,8 @@ const styles = {
     paddingTop:"2px",
     borderRadius: '8px',
     position: 'absolute',
-    bottom: 85,
-    right: 35,
+    bottom: 95,
+    right: 30,
     width: '60px',
     height: '30px',
     border: '2px solid #95BA69',

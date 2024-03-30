@@ -16,7 +16,7 @@ const styles = {
     fontWeight: '700',
   },
   inputBlock: {
-    backgroundColor:'white',
+    backgroundColor: 'white',
     borderRadius: '14px',
     width: '100%',
     height: '300px',
@@ -52,25 +52,46 @@ const styles = {
     height: '250px',
   },
   bmi: {
-    textAlign: 'left',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    marginTop: '30px',
-    borderRadius: '14px',
-    backgroundColor: '#FFFFFF',
-    width: '370px',
-    height: '150px',
-    boxShadow: '0px 0px 10px 2px rgba(0, 0, 0, 0.1)',
+    width: {
+      xl: "400px",
+      lg: "400px",
+      sm: "400px",
+      xs: "100%",
+    },
+    maxWidth: "400px",
+    padding: "20px",
+    margin: "0 auto",
+    marginTop: "30px",
+    borderRadius: "14px",
+    backgroundColor: "#fff",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
   },
   bmiContent: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: '20px',
-    marginBottom: '5px',
-    gap: '8%'
+    marginLeft: {
+      xl: "-24px",
+      lg: "-24px",
+      sm: "-24px",
+      xs: "-14px",
+    },
+    gap:'10px',
+    display: "flex",
+    alignItems: "center",
+    justifyContent:'flexStart',
+  },
+  bmiTitle: {
+    fontWeight: 600,
+    fontSize: "16px",
+    marginLeft: {
+      xl: "10px",
+      lg: "10px",
+      sm: "10px",
+      xs: "0",
+    },
+  },
+  bmiDescription: {
+    maxWidth: "300px",
+    fontSize: "14px",
+    textAlign: "left",
   }
 };
 
@@ -98,7 +119,7 @@ const WelnessProfile = () => {
   const weightl = localStorage.getItem('weight');
   const heightl = localStorage.getItem('height');
   const calculatedBMI = weightl / Math.pow(heightl / 100, 2);
-      
+
   const roundedBMI = calculatedBMI.toFixed(1);
   return (
     <Container sx={styles.mainContainer}>
@@ -115,11 +136,11 @@ const WelnessProfile = () => {
           <Typography component="p">
             <Image src="/images/redIbm.svg" alt="Company Logo" width={34} height={40} />
           </Typography>
-          <Typography variant="p" component="div" sx={{ fontWeight: '700', fontSize: '18px' }}>
+          <Typography variant="p" component="div" sx={styles.bmiTitle}>
             Risks for an unhealthy BMI
           </Typography>
         </Container>
-        <Typography sx={{ width: '100%', fontSize: '16px' }} variant="p" component="div" >
+        <Typography sx={styles.bmiDescription} variant="p" component="div" >
           Your weight is risky for your health. We will use your index to create the weight loss program fitting your needs.
         </Typography>
       </Container>

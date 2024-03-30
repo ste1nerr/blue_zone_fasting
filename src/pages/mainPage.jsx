@@ -31,11 +31,25 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'center',
-    gap: '100px',
+    justifyContent: 'flexStart',
+    gap: {
+      xl: '80px',
+      lg: '80px',
+      md: '50px',
+      sm: '50px',
+      xs: '20px',
+    },
     textAlign: 'center',
   },
   title: {
+
+    marginTop: {
+      xl: '12vh',
+      lg: '12vh',
+      md: '14vh',
+      sm: '8vh',
+      xs: '8vh',
+    },
     fontWeight: '700',
     maxWidth: '400px',
   },
@@ -67,12 +81,18 @@ const styles = {
   button: {
     backgroundColor: '#1488F0',
     borderRadius: '50px',
-    width: '350px',
+    width: '100%',
+    maxWidth: '350px',
     height: '50px',
     padding: '10px 16px',
     textTransform: 'none',
     fontWeight: '700'
   },
+  imgContainer: {
+    width: '100%',
+    height: '400px',
+    position: 'relative'
+  }
 };
 
 function MainPage() {
@@ -82,7 +102,7 @@ function MainPage() {
         <AppBar position="static" sx={styles.appBar}>
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1, textAlign: 'center' }}>
-              <Image src="/images/logo.svg" alt="Company Logo" width={250} height={50} />
+              <Image src="/images/logo.svg" alt="Company Logo" width={210} height={50} />
             </Typography>
             <Image src="/images/bars.svg" alt="Quiz Image" width={32} height={32} />
           </Toolbar>
@@ -92,7 +112,18 @@ function MainPage() {
           <Typography variant="h4" sx={styles.title}>
             Begin Your Intermittent Fasting Program
           </Typography>
-          <Image src="/images/before&after.svg" alt="Quiz Image" width={500} height={400} />
+
+
+          <Container sx={styles.imgContainer}>
+            <Image
+              src="/images/before&after.svg"
+              alt="Quiz Image"
+              className={styles.img}
+              layout="fill"
+              objectFit="contain"
+            />
+          </Container>
+
         </Container>
 
         <Container sx={styles.descriptionContainer}>

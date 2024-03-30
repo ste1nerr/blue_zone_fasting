@@ -2,10 +2,24 @@ import React, { useEffect, useState } from 'react';
 
 const GradientLine = ({ value }) => {
   const [bmi, setBMI] = useState(null);
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 490);
+
   const minValue = 26;
-  const maxValue = 50;
+  const maxValue = 100;
 
   const isOutOfRange = value < minValue || value > maxValue;
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth < 500);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     const weight = localStorage.getItem('weight');
@@ -31,15 +45,24 @@ const GradientLine = ({ value }) => {
   }
 
   const calculatePosition = (value) => {
-    const width = 500;
+    const width = 50;
     const scaledValue = (value - minValue) / (maxValue - minValue);
     return scaledValue * width;
+  };
+
+  const adjustedUpperTextStyle = {
+    fontWeight: '700',
+    position: 'absolute',
+    top: '-100px',
+    left: '10px',
+    fontSize: '16px',
+    display: isSmallScreen ? 'block' : 'none' ,
   };
 
   const containerStyle = {
     marginTop:'100px',
     position: 'relative',
-    width: '500px',
+    width: '100%',
     height: '40px',
     textAlign: 'center',
   };
@@ -58,7 +81,7 @@ const GradientLine = ({ value }) => {
     position: 'relative',
     top: '50%',
     transform: 'translateY(-50%)',
-    left: `${calculatePosition(correctedValue)}px`, 
+    left: `${calculatePosition(correctedValue)}%`, 
     width: '25px',
     height: '25px',
     borderRadius: '50%',
@@ -67,9 +90,8 @@ const GradientLine = ({ value }) => {
     textAlign: 'center',
     lineHeight: '20px',
     boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)',
-    backgroundColor: 'transparent'
+    display: 'inline-block', 
   };
-
   const bmiTextStyle = {
     padding: '5px',
     fontSize: '15px',
@@ -79,8 +101,9 @@ const GradientLine = ({ value }) => {
     width: '90px',
     position: 'absolute',
     top: '-60px',
-    left: '50%',
+    left: `${calculatePosition(correctedValue)}%`, 
     transform: 'translateX(-50%)',
+    textAlign: 'center',
   };
 
   const labelsStyle = {
@@ -95,15 +118,16 @@ const GradientLine = ({ value }) => {
   const upperTextStyle = {
     fontWeight: '700',
     position: 'absolute',
-    top: '-80px',
+    top: '-100px',
     left: '10px',
     fontSize: '16px',
+    display: isSmallScreen ? 'none' : 'block' ,
   };
 
   const upperRightTextStyle = {
     fontWeight: '700',
     position: 'absolute',
-    top: '-80px',
+    top: '-100px',
     right: '10px',
     fontSize: '16px',
   };
@@ -114,13 +138,11 @@ const GradientLine = ({ value }) => {
     textAlign: 'left',
     display: 'flex',
     width: '100%',
-
   };
 
   const columnStyle = {
     marginTop:'50px',
     flex: '1',
-    padding: '0 10px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -128,6 +150,8 @@ const GradientLine = ({ value }) => {
   };
 
   const titleStyle = {
+    textTransform: 'uppercase',
+    textAlign:'center',
     fontSize: '12px',
     color: '#999999',
     marginBottom: '5px',
@@ -139,6 +163,7 @@ const GradientLine = ({ value }) => {
   };
 
   const verticalLineStyle = {
+    display: isSmallScreen ? 'none' : 'block' ,
     position: 'absolute',
     height: '100%',
     width: '1px',
@@ -162,6 +187,7 @@ const GradientLine = ({ value }) => {
 
   return (
     <div style={containerStyle}>
+      <div style={adjustedUpperTextStyle}>BMI</div>
       <div style={upperTextStyle}>Body-Mass-Index (BMI)</div>
       <div style={upperRightTextStyle}>Normal: 21.5</div>
       <div style={lineStyle}></div>
@@ -181,15 +207,15 @@ const GradientLine = ({ value }) => {
           <div style={verticalLineStyle}></div> 
         </div>
         <div style={columnStyle}>
-          <div style={titleStyle}>TYPE OF EATER</div>
+          <div style={titleStyle}>{isSmallScreen ? 'Eater' : 'TYPE OF EATER'}</div>
           <div style={subtitleStyle}>Gourmand</div>
           <div style={verticalLineStyle}></div> 
-
         </div>
         <div style={columnStyle}>
-          <div style={titleStyle}>FASTING MOTIVATION</div>
+          <div style={titleStyle}>{isSmallScreen ? 'Motivation' : 'FASTING MOTIVATION'}</div>
           <div style={subtitleStyle}>High</div>
         </div>
+     
       </div>
     </div>
   );

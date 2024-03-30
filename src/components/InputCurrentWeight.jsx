@@ -3,17 +3,33 @@ import { Typography, Container, TextField } from '@mui/material';
 import Image from 'next/image';
 
 const styles = {
-  mainContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column'
+  questionTitle: {
+    marginBottom: '70px',
+    fontSize: '40px',
+    fontWeight: '700',
   },
   inputBlock: {
+    marginTop: {
+      xl: '70px',
+      lg: '50px',
+      sm: '30px',
+      xs: '10px',
+    },
+    height: {
+      xl: '240px',
+      lg: '220px',
+      sm: '200px',
+      xs: '180px',
+    },
     borderRadius: '14px',
     backgroundColor: '#FFFFFF',
-    width: '350px',
-    height: '250px',
+    width: {
+      xl: '400px',
+      lg: '400px',
+      sm: '340px',
+      xs: '280px',
+    },
+    padding: '20px',
     display: 'flex',
     justifyContent: 'center',
     flexDirection: 'column',
@@ -22,14 +38,18 @@ const styles = {
     boxShadow: '0px 0px 10px 2px rgba(0, 0, 0, 0.1)',
   },
   textField: {
-    width: '130px',
-    marginLeft: '20px',
-    marginRight: '10px',
+    width: '50%',
+    maxWidth: '130px',
     border: 'none',
     borderBottom: '1px solid #9e9e9e',
     borderRadius: '0',
     '& .MuiInputBase-input': {
-      fontSize: '48px',
+      fontSize: {
+        xl: '40px',
+        lg: '40px',
+        sm: '34px',
+        xs: '28px',
+      },
       fontWeight: '700',
       textAlign: 'center',
     },
@@ -43,39 +63,82 @@ const styles = {
     },
   },
   unitText: {
-    marginBottom: '20px',
     fontSize: '30px',
     fontWeight: '700',
     position: 'absolute',
-    top: 1,
-    right: 8,
+    top: '10px',
+    right: '-5px'
   },
   space: {
     position: 'relative',
-    width: '44px',
+    width: '20px',
     height: '60px'
   },
-  bmi: {
-    textAlign:'left',
+  switchContainer: {
     display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignItems: 'center',
-    marginTop: '30px',
-    borderRadius: '14px',
-    backgroundColor: '#FFFFFF',
-    width: '350px',
-    height: '150px',
-    boxShadow: '0px 0px 10px 2px rgba(0, 0, 0, 0.1)',
+    marginTop: '20px',
+    border: '1px solid #ccc',
+    borderRadius: '20px',
+    border: '2px solid #1488F0',
+    overflow: 'hidden',
+  },
+  switchOption: {
+    cursor: 'pointer',
+    width: '100px',
+    padding: '10px',
+    fontSize: '16px',
+    fontWeight: 'bold',
+    backgroundColor: '#fff',
+    color: '#1488F0',
+    transition: 'background-color 0.3s',
+  },
+  activeOption: {
+    backgroundColor: '#1488F0',
+    color: '#fff',
+  },
+  bmi: {
+    width: {
+      xl: "400px",
+      lg: "400px",
+      sm: "340px",
+      xs: "280px",
+    },
+    maxWidth: "400px",
+    padding: "20px",
+    margin: "0 auto",
+    marginTop: "30px",
+    borderRadius: "14px",
+    backgroundColor: "#fff",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
   },
   bmiContent: {
-    display:'flex',
-    justifyContent:'center',
-    alignItems:'center',
-    marginTop: '20px',
-    marginBottom: '5px',
-    gap: '8%'
-  }
+    marginLeft: {
+      xl: "-24px",
+      lg: "-24px",
+      sm: "-24px",
+      xs: "-14px",
+    },
+    gap: '10px',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: 'flexStart',
+  },
+  bmiTitle: {
+    fontWeight: 600,
+    fontSize: "16px",
+    marginLeft: {
+      xl: "10px",
+      lg: "10px",
+      sm: "10px",
+      xs: "0",
+    },
+  },
+  bmiDescription: {
+    fontSize: "14px",
+    textAlign: "left",
+  },
 };
 
 const InputCurrentWeight = () => {
@@ -95,7 +158,7 @@ const InputCurrentWeight = () => {
   return (
     <Container sx={styles.mainContainer}>
       <Container sx={styles.inputBlock}>
-        <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <Container sx={{ gap: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <Typography variant="h6" component="div">
             <Image src="/images/yellowWeight.svg" alt="Company Logo" width={50} height={50} />
           </Typography>
@@ -107,7 +170,7 @@ const InputCurrentWeight = () => {
             InputProps={{
               disableUnderline: true,
               placeholder: '',
-              inputProps: { maxLength: 5 }
+              inputProps: { maxLength: 5, pattern: "[0-9]*" }
             }}
           />
           <Typography variant="p" sx={styles.space}>
@@ -117,17 +180,19 @@ const InputCurrentWeight = () => {
           </Typography>
         </Container>
       </Container>
+
+
       <Container sx={styles.bmi}>
         <Container sx={styles.bmiContent}>
           <Typography component="p">
             <Image src="/images/redIbm.svg" alt="Company Logo" width={34} height={40} />
           </Typography>
-          <Typography variant="p" component="div" sx={{ fontWeight: '700', fontSize: '18px' }}>
+          <Typography variant="p" component="div" sx={styles.bmiTitle}>
             Your BMI is 30 which is considered obese
           </Typography>
         </Container>
-        <Typography sx={{ width: '100%', fontSize: '16px' }} variant="p" component="div" >
-          There's a lot you could gain by losing a little weight. 
+        <Typography sx={styles.bmiDescription} variant="p" component="div" >
+          There's a lot you could gain by losing a little weight.
           We’ll use your BMI to create the weight loss program you need.
         </Typography>
       </Container>
