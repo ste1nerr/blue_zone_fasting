@@ -312,15 +312,15 @@ function TestPage() {
                                         ) : (
                                             option.icon_type === 'emoji' ? (
                                                 (gender === 'female' && option.womanIcon) ? (
-                                                    <Image src={option.womanIcon} alt={option.text} width={24} height={24} style={styles.emojiIcon} />
+                                                    <Image loading="lazy" src={option.womanIcon} alt={option.text} width={24} height={24} style={styles.emojiIcon} />
                                                 ) : (
-                                                    <Image src={option.icon} alt={option.text} width={24} height={24} style={styles.emojiIcon} />
+                                                    <Image loading="lazy" src={option.icon} alt={option.text} width={24} height={24} style={styles.emojiIcon} />
                                                 )
                                             ) : (
                                                 (gender === 'female' && option.womanIcon) ? (
-                                                    <Image src={option.womanIcon} alt={option.text} width={24} height={24} style={styles.imageIcon} />
+                                                    <Image loading="lazy" src={option.womanIcon} alt={option.text} width={24} height={24} style={styles.imageIcon} />
                                                 ) : (
-                                                    <Image src={option.icon} alt={option.text} width={24} height={24} style={styles.imageIcon} />
+                                                    <Image loading="lazy" src={option.icon} alt={option.text} width={24} height={24} style={styles.imageIcon} />
                                                 )
                                             )
                                         )}
