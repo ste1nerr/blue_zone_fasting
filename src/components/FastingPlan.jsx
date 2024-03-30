@@ -18,6 +18,11 @@ const FastingPlan = () => {
       fontFamily: 'Roboto, sans-serif',
       fontSize: '40px',
     },
+    imgContainer: {
+      width: '100%',
+      height: '400px',
+      position: 'relative'
+    }
   };
 
   return (
@@ -26,7 +31,16 @@ const FastingPlan = () => {
         <Typography variant="p" sx={{ ...styles.title }}>
           Crafting your <span style={{ color: '#1488F0' }}><br />Fasting Plan</span>
         </Typography>
-        <Image src="/images/ny_girl.svg" alt="Quiz Image" width={700} height={400} />
+
+        <Container sx={styles.imgContainer}>
+          <Image
+            src="/images/ny_girl.svg"
+            alt="Quiz Image"
+            className={styles.img}
+            layout="fill"
+            objectFit="contain"
+          />
+        </Container>
       </Container>
     </>
   );

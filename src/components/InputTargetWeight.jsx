@@ -72,7 +72,7 @@ const styles = {
     fontSize: '30px',
     fontWeight: '700',
     position: 'absolute',
-    top: '0',
+    top: '5px',
     right: '-15px'
   },
   space: {
