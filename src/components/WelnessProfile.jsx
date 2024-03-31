@@ -89,8 +89,7 @@ const styles = {
     },
   },
   bmiDescription: {
-    maxWidth: "300px",
-    fontSize: "14px",
+    fontSize: "16px",
     textAlign: "left",
   }
 };

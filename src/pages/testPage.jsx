@@ -51,7 +51,7 @@ const styles = {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        marginTop: '10vh',
+        marginTop: '6vh',
         flex: 1,
     },
     emojiIcon: {
@@ -249,19 +249,19 @@ function TestPage() {
 
     const progress = ((currentQuestionIndex + 1) / totalQuestions) * 100;
 
-    let gridSpacing = 2;
+    let gridSpacing = 3;
     let gridJustify = 'center';
     let gridColumns = { xs: 12, sm: 6, md: 4, lg: 3 };
 
     if (currentQuestion.options.length === 3 || currentQuestion.options.length === 2 || currentQuestion.options.length === 4) {
-        gridSpacing = 2;
+        gridSpacing = 3;
         gridJustify = 'center';
         gridColumns = { xs: 12 };
     }
     let updatedContentContainerStyles = { ...styles.contentContainer };
 
     if (currentQuestion.options.length > 4) {
-        gridSpacing = 2;
+        gridSpacing = 3;
         gridJustify = 'center';
         gridColumns = { xs: 12, sm: 6 };
         if (currentQuestion.options.length > 4) {

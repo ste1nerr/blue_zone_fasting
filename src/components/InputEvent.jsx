@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Typography, Container} from '@mui/material';
+import { Typography, Container } from '@mui/material';
 import Image from 'next/image';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
+import dayjs from 'dayjs';
 
 const styles = {
     mainContainer: {
@@ -8,11 +13,6 @@ const styles = {
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column'
-    },
-    questionTitle: {
-        marginBottom: '70px',
-        fontSize: '40px',
-        fontWeight: '700',
     },
     inputBlock: {
         marginTop: {
@@ -43,35 +43,6 @@ const styles = {
         textAlign: 'center',
         boxShadow: '0px 0px 10px 2px rgba(0, 0, 0, 0.1)',
     },
-    textField: {
-        width: '100%',
-        maxWidth: {
-            xl: '380px',
-            lg: '380px',
-            sm: '330px',
-            xs: '280px',
-        },
-        borderBottom: '1px solid #9e9e9e',
-        '& .MuiInputBase-input': {
-            fontSize: {
-                xl: '40px',
-                lg: '40px',
-                sm: '34px',
-                xs: '28px',
-            },
-            fontWeight: '700',
-            textAlign: 'center',
-        },
-        '&:hover': {
-            borderBottom: '1px solid #9e9e9e'
-        },
-        '& input': {
-            '&:focus': {
-                outline: 'none'
-            }
-        },
-    },
-
     event: {
         width: {
             xl: "400px",
@@ -99,11 +70,13 @@ const styles = {
         alignItems: "center",
         justifyContent: 'flexStart',
     },
+
 };
 
 const InputEvent = () => {
     const [eventName, setEventName] = useState('');
-    const [selectedDate, handleDateChange] = React.useState(new Date());
+    const [selectedDate, handleDateChange] = React.useState(dayjs());
+
     useEffect(() => {
         const storedEventName = localStorage.getItem('eventName');
         if (storedEventName) setEventName(storedEventName);
@@ -123,11 +96,45 @@ const InputEvent = () => {
         <>
             <Container sx={styles.mainContainer}>
                 <Container sx={styles.inputBlock}>
-                    <Container sx={{ gap: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <Container sx={{
+                        gap: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center', 
+                        width: {
+                            xl: '310px',
+                            lg: '280px',
+                            sm: '260px',
+                            xs: '210px',
+                        },
+                    }}>
                         <Typography variant="h6" component="div">
                             <Image src="/images/event.svg" alt="Event Icon" width={50} height={50} />
                         </Typography>
-                        <input type="date" id="myDate"/>
+                        <LocalizationProvider dateAdapter={AdapterDayjs} dateFormats={{ mobileDate: 'DD\\MM\\YY' }}>
+                            <MobileDatePicker
+                                slotProps={{
+                                    textField: {
+                                        variant: "standard",
+                                        sx: {
+                                            '& input': {
+                                                margin: '0 auto',
+                                                fontWeight: '700',
+                                                textAlign: 'center',
+                                                width: '100%',
+                                                fontSize: {
+                                                    xl: '48px',
+                                                    lg: '42px',
+                                                    sm: '36px',
+                                                    xs: '26px',
+                                                },
+                                            }
+                                        }
+                                    }
+                                }}
+                                value={selectedDate}
+                                onChange={handleDateChange}
+                                format="DD\MM\YY"
+                            />
+                        </LocalizationProvider>
+
                     </Container>
                 </Container>
                 <Container sx={styles.event}>
@@ -137,12 +144,8 @@ const InputEvent = () => {
                         Once we know this, we'll be able to put together a personalized plan to help you get in shape. Your data will not be shared with any third parties.
                     </Typography>
                 </Container>
-
-
-
             </Container>
         </>
-
     );
 };
 

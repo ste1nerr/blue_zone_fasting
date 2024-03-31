@@ -38,7 +38,7 @@ const styles = {
     boxShadow: '0px 0px 10px 2px rgba(0, 0, 0, 0.1)',
   },
   textField: {
-    width: '50%',
+    width: '30%',
     maxWidth: '130px',
     border: 'none',
     borderBottom: '1px solid #9e9e9e',
@@ -136,7 +136,7 @@ const styles = {
     },
   },
   bmiDescription: {
-    fontSize: "14px",
+    fontSize: "16px",
     textAlign: "left",
   },
 };
