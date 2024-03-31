@@ -47,7 +47,7 @@ const styles = {
     contentContainer: {
         padding: '20px',
         width: '100%',
-        maxWidth: '600px',
+        maxWidth: '620px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -109,7 +109,7 @@ const styles = {
             xs: '250px',
         },
         fontSize: {
-            xl: 20,
+            xl: 22,
             lg: 18,
             sm: 16,
             xs: 16,
@@ -298,9 +298,10 @@ function TestPage() {
                 )}
                 <Container style={updatedContentContainerStyles}>
                     {currentQuestionIndex <= 31 && (
-                        <Typography variant="h4" sx={styles.questionContainer}>
-                            {currentQuestion.question_text}
-                        </Typography>
+                        <Typography variant="h4" sx={currentQuestionIndex === 2 ? { ...styles.questionContainer, maxWidth: '400px' } : (currentQuestionIndex === 5 || currentQuestionIndex === 8) ? { ...styles.questionContainer, maxWidth: '450px' } : (currentQuestionIndex === 12 ? { ...styles.questionContainer, maxWidth: '450px' } : (currentQuestionIndex === 13 || currentQuestionIndex === 14 || currentQuestionIndex === 21 ? { ...styles.questionContainer, maxWidth: '600px' } : styles.questionContainer))}>
+    {currentQuestion.question_text}
+</Typography>
+
                     )}
                     <Grid container spacing={gridSpacing} justifyContent={gridJustify}>
                         {currentQuestion.options.map((option, index) => (
