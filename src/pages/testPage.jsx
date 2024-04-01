@@ -21,6 +21,7 @@ import FastingPlan from '@/components/FastingPlan';
 import EnterMail from '@/components/EnterMail';
 import Finish from '@/components/Finish';
 import { Grid, Box } from '@mui/material';
+import ImagePreloader from '@/components/ImagePreloader';
 
 const styles = {
     container: {
@@ -60,7 +61,7 @@ const styles = {
         height: '32px',
     },
     imageIcon: {
-        width: '85px',
+        width: '80px',
         marginRight: '30px',
         height: 'auto',
     },
@@ -280,6 +281,7 @@ function TestPage() {
                         <Image src="/images/bars.svg" alt="Quiz Image" width={32} height={32} />
                     </Toolbar>
                 </AppBar>
+                <ImagePreloader/>
                 {currentQuestionIndex <= 31 && (
                     <Container style={styles.progressContainer}>
                         {[...Array(totalQuestions)].map((_, index) => (
@@ -299,8 +301,8 @@ function TestPage() {
                 <Container style={updatedContentContainerStyles}>
                     {currentQuestionIndex <= 31 && (
                         <Typography variant="h4" sx={currentQuestionIndex === 2 ? { ...styles.questionContainer, maxWidth: '400px' } : (currentQuestionIndex === 5 || currentQuestionIndex === 8) ? { ...styles.questionContainer, maxWidth: '450px' } : (currentQuestionIndex === 12 ? { ...styles.questionContainer, maxWidth: '450px' } : (currentQuestionIndex === 13 || currentQuestionIndex === 14 || currentQuestionIndex === 21 ? { ...styles.questionContainer, maxWidth: '600px' } : styles.questionContainer))}>
-    {currentQuestion.question_text}
-</Typography>
+                            {currentQuestion.question_text}
+                        </Typography>
 
                     )}
                     <Grid container spacing={gridSpacing} justifyContent={gridJustify}>

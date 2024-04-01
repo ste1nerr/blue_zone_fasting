@@ -52,20 +52,20 @@ const mockData = {
       "checkboxes": false,
       "options": [
         {
-          "icon": "/images/bodyMan1.svg",
-          "womanIcon": "/images/bodyWoman1.svg",
+          "icon": "/images/M_average 1.svg",
+          "womanIcon": "/images/W_average 1.svg",
           "text": "Average",
           "icon_type": "image"
         },
         {
-          "icon": "/images/bodyMan2.svg",
-          "womanIcon": "/images/bodyWoman2.svg",
+          "icon": "/images/M_plump 1.svg",
+          "womanIcon": "/images/W_plump 1.svg",
           "text": "Plump",
           "icon_type": "image"
         },
         {
-          "icon": "/images/bodyMan3.svg",
-          "womanIcon": "/images/bodyWoman3.svg",
+          "icon": "/images/M_extra 1.svg",
+          "womanIcon": "/images/W_extra 1.svg",
           "text": "Extra",
           "icon_type": "image"
         }
@@ -76,20 +76,20 @@ const mockData = {
       "checkboxes": false,
       "options": [
         {
-          "icon": "/images/bodyMan1.svg",
-          "womanIcon": "/images/bodyWoman1.svg",
+          "icon": "/images/M_fit 1.svg",
+          "womanIcon": "/images/W_fit 1.svg",
           "text": "Fit",
           "icon_type": "image"
         },
         {
-          "icon": "/images/bodyMan2.svg",
-          "womanIcon": "/images/bodyWoman2.svg",
+          "icon": "/images/M_average 2.svg",
+          "womanIcon": "/images/W_average 2.svg",
           "text": "Shapely",
           "icon_type": "image"
         },
         {
-          "icon": "/images/bodyMan2.svg",
-          "womanIcon": "/images/bodyWoman2.svg",
+          "icon": "/images/M_athletic 1.svg",
+          "womanIcon": "/images/W_athletic 1.svg",
           "text": "Athletic",
           "icon_type": "image"
         }
@@ -100,26 +100,26 @@ const mockData = {
       "checkboxes": false,
       "options": [
         {
-          "icon": "/images/bellyMan.svg",
-          "womanIcon": "/images/bellyWoman.svg",
+          "icon": "/images/M_belly 1.svg",
+          "womanIcon": "/images/W_belly 1.svg",
           "text": "Belly",
           "icon_type": "image"
         },
         {
-          "icon": "/images/breastsMan.svg",
-          "womanIcon": "/images/breastsWoman.svg",
+          "icon": "/images/M_breasts 1.svg",
+          "womanIcon": "/images/W_breasts 1.svg",
           "text": "Breasts",
           "icon_type": "image"
         },
         {
-          "icon": "/images/legsMan.svg",
-          "womanIcon": "/images/legsWoman.svg",
+          "icon": "/images/M_legs 1.svg",
+          "womanIcon": "/images/W_legs 1.svg",
           "text": "Legs",
           "icon_type": "image"
         },
         {
-          "icon": "/images/buttocksMan.svg",
-          "womanIcon": "/images/buttocksWoman.svg",
+          "icon": "/images/M_buttocks 1.svg",
+          "womanIcon": "/images/W_buttocks 1.svg",
           "text": "Buttocks",
           "icon_type": "image"
         }
