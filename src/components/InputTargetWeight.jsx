@@ -140,7 +140,7 @@ const InputTargetWeight = () => {
   return (
     <Container sx={styles.mainContainer}>
       <Container sx={styles.inputBlock}>
-      <Container sx={{ gap: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <Container sx={{ gap: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center', marginLeft:'-10px' }}>
           <Typography variant="h6" component="div">
             <Image src="/images/orangeWeight.svg" alt="Company Logo" width={50} height={50} />
           </Typography>
