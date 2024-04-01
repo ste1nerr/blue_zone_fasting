@@ -102,7 +102,7 @@ const InputEvent = () => {
                             xl: '310px',
                             lg: '280px',
                             sm: '260px',
-                            xs: '210px',
+                            xs: '220px',
                         },
                     }}>
                         <Typography variant="h6" component="div">
