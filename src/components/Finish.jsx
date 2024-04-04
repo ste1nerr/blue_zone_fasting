@@ -9,6 +9,9 @@ const Finish = () => {
   const [hovered1, setHovered1] = useState(false);
   const [hovered2, setHovered2] = useState(false);
   const [hovered3, setHovered3] = useState(false);
+  const [buttonHovered1, setButtonHovered1] = useState(false);
+  const [buttonHovered2, setButtonHovered2] = useState(false);
+  const [buttonHovered3, setButtonHovered3] = useState(false);
 
   const styles = {
     mainContainer: {
@@ -105,8 +108,9 @@ const Finish = () => {
       transition: 'background-color 0.3s',
       marginTop: '50px',
     },
+
     buttonHover: {
-      backgroundColor: '#0161b7',
+      backgroundColor: '#B375FF',
     },
     girlImgContainer: {
       width: '100%',
@@ -155,7 +159,13 @@ const Finish = () => {
             <Typography variant="p" style={styles.costPack}>
               US 9.99$
             </Typography>
-            <Button style={styles.packBtn}>Save 33%</Button>
+            <Button
+              style={{ ...styles.packBtn, ...(buttonHovered1 ? styles.buttonHover : {}) }}
+              onMouseEnter={() => setButtonHovered1(true)}
+              onMouseLeave={() => setButtonHovered1(false)}
+            >
+              Get my plan
+            </Button>
           </div>
 
           <div
@@ -174,7 +184,13 @@ const Finish = () => {
             <Typography variant="p" style={styles.costPack}>
               US 9.99$
             </Typography>
-            <Button style={styles.packBtn}>Free</Button>
+            <Button
+              style={{ ...styles.packBtn, ...(buttonHovered2 ? styles.buttonHover : {}) }}
+              onMouseEnter={() => setButtonHovered2(true)}
+              onMouseLeave={() => setButtonHovered2(false)}
+            >
+              Free
+            </Button>
           </div>
 
           <div
@@ -194,7 +210,13 @@ const Finish = () => {
             <Typography variant="p" style={styles.costPack}>
               US 9.99$
             </Typography>
-            <Button style={styles.packBtn}>Save 60%</Button>
+            <Button
+              style={{ ...styles.packBtn, ...(buttonHovered3 ? styles.buttonHover : {}) }}
+              onMouseEnter={() => setButtonHovered3(true)}
+              onMouseLeave={() => setButtonHovered3(false)}
+            >
+              save 60%
+            </Button>
           </div>
         </div>
 

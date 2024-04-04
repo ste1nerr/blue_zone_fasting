@@ -182,9 +182,12 @@ const InputTall = () => {
   }, []);
 
   const handleInputChange = (event) => {
-    const { value } = event.target;
-    setHeight(value);
-    localStorage.setItem('height', value);
+    const inputText = event.target.value;
+    const regex = /^[0-9.,\b]+$/;
+    if (inputText === '' || regex.test(inputText)) {
+      setHeight(inputText);
+      localStorage.setItem('height', inputText);
+    }
   };
 
   const toggleUnit = () => {

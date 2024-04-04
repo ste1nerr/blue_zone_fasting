@@ -61,7 +61,7 @@ const styles = {
         height: '32px',
     },
     imageIcon: {
-        width: '80px',
+        width: '78px',
         marginRight: '30px',
         height: 'auto',
     },
@@ -140,7 +140,7 @@ const styles = {
         display: 'flex',
         width: '100%',
         transition: 'box-shadow 0.3s, border-color 0.3s',
-        border: '2px solid transparent',
+        border: '1px solid transparent',
         '&:hover': {
             borderColor: '#1488F0',
         }
@@ -239,6 +239,7 @@ function TestPage() {
         }
     };
 
+
     useEffect(() => {
         if (answers.length > 0 && answers[0]?.selectedOption) {
             const answerToQuestion0 = answers[0].selectedOption.toLowerCase();
@@ -281,7 +282,7 @@ function TestPage() {
                         <Image src="/images/bars.svg" alt="Quiz Image" width={32} height={32} />
                     </Toolbar>
                 </AppBar>
-                <ImagePreloader/>
+                <ImagePreloader />
                 {currentQuestionIndex <= 31 && (
                     <Container style={styles.progressContainer}>
                         {[...Array(totalQuestions)].map((_, index) => (
@@ -300,15 +301,15 @@ function TestPage() {
                 )}
                 <Container style={updatedContentContainerStyles}>
                     {currentQuestionIndex <= 31 && (
-                        <Typography variant="h4" sx={currentQuestionIndex === 2 ? { ...styles.questionContainer, maxWidth: '400px' } : (currentQuestionIndex === 5 || currentQuestionIndex === 8) ? { ...styles.questionContainer, maxWidth: '450px' } : (currentQuestionIndex === 12 ? { ...styles.questionContainer, maxWidth: '450px' } : (currentQuestionIndex === 13 || currentQuestionIndex === 14 || currentQuestionIndex === 21 ? { ...styles.questionContainer, maxWidth: '600px' } : styles.questionContainer))}>
+                        <Typography variant="h4" sx={currentQuestionIndex === 2 ? { ...styles.questionContainer, maxWidth: '400px' } : (currentQuestionIndex === 5 || currentQuestionIndex === 8) ? { ...styles.questionContainer, maxWidth: '450px' } : (currentQuestionIndex === 12 ? { ...styles.questionContainer, maxWidth: '450px' } : (currentQuestionIndex === 13 || currentQuestionIndex === 14 || currentQuestionIndex === 21 ? { ...styles.questionContainer, maxWidth: '600px' } : currentQuestionIndex === 28 ? { ...styles.questionContainer, maxWidth: '400px', marginBottom: '100px' } : styles.questionContainer))}>
                             {currentQuestion.question_text}
                         </Typography>
 
                     )}
                     <Grid container spacing={gridSpacing} justifyContent={gridJustify}>
                         {currentQuestion.options.map((option, index) => (
-                            <Grid item {...gridColumns} key={index} style={{ display: 'flex', justifyContent: 'center' }} onClick={() => handleAnswerClick(index)}>
-                                <Box sx={styles.gridItem}>
+                            <Grid item {...gridColumns} key={index} style={{ display: 'flex', justifyContent: 'center' }}>
+                                <Box sx={styles.gridItem} onClick={() => handleAnswerClick(index)}>
                                     <Container style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
                                         {option.icon_type === 'none' ? (
                                             <span></span>
@@ -334,6 +335,7 @@ function TestPage() {
                                                 onChange={() => handleAnswerClick(index)}
                                                 color="primary"
                                                 sx={styles.checkBoxAndRadio}
+                                                onClick={(event) => event.stopPropagation()}
                                             />
                                         ) : (
                                             <Radio
@@ -341,6 +343,7 @@ function TestPage() {
                                                 onChange={() => handleAnswerClick(index)}
                                                 color="primary"
                                                 sx={styles.checkBoxAndRadio}
+                                                onClick={(event) => event.stopPropagation()}
                                             />
                                         )}
                                     </Container>

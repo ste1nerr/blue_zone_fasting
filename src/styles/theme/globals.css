@@ -15,7 +15,8 @@ li {
 }
 
 body {
-    background-color: #EEF5FF;
+    background: linear-gradient(rgba(255, 255, 255, 1), rgba(238, 245, 255, 1));
+    background-color: rgba(255, 255, 255, 1);
     font-family: 'Roboto', sans-serif;
     font-weight: 500; 
 }

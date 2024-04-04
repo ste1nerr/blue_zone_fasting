@@ -131,10 +131,13 @@ const InputTargetWeight = () => {
     if (storedTargetWeight) setTargetWeight(storedTargetWeight);
   }, []);
 
-  const handleChange = (event) => {
-    const { value } = event.target;
-    setTargetWeight(value);
-    localStorage.setItem('targetWeight', value);
+  const handleChange = (e) => {
+    const inputText = e.target.value;
+    const regex = /^[0-9.,\b]+$/;
+    if (inputText === '' || regex.test(inputText)) {
+      setTargetWeight(inputText);
+      localStorage.setItem('targetWeight', inputText);
+    }
   };
 
   return (

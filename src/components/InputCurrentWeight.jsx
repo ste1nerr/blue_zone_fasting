@@ -150,15 +150,18 @@ const InputCurrentWeight = () => {
   }, []);
 
   const handleChange = (event) => {
-    const { value } = event.target;
-    setWeight(value);
-    localStorage.setItem('weight', value);
+    const inputText = event.target.value;
+    const regex = /^[0-9.,\b]+$/;
+    if (inputText === '' || regex.test(inputText)) {
+      setWeight(inputText);
+      localStorage.setItem('weight', inputText);
+    }
   };
 
   return (
     <Container sx={styles.mainContainer}>
       <Container sx={styles.inputBlock}>
-        <Container sx={{ gap: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center', marginLeft:'-10px', }}>
+        <Container sx={{ gap: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center', marginLeft: '-10px', }}>
           <Typography variant="h6" component="div">
             <Image src="/images/yellowWeight.svg" alt="Company Logo" width={50} height={50} />
           </Typography>
@@ -170,7 +173,7 @@ const InputCurrentWeight = () => {
             InputProps={{
               disableUnderline: true,
               placeholder: '',
-              inputProps: { maxLength: 5, pattern: "[0-9]*" }
+              inputProps: { maxLength: 5, pattern: "[0-9]*" },
             }}
           />
           <Typography variant="p" sx={styles.space}>
